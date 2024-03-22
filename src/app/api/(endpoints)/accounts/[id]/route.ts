@@ -12,3 +12,7 @@ export async function GET(req: NextRequest, context: { params: Params }) {
 export async function DELETE(req: NextRequest, context: { params: Params }) {
   return NextResponse.json(JSON.stringify(deleteAccount(parseInt(context.params.id, 10))))
 }
+
+export async function POST(req: NextRequest){
+  return NextResponse.json({mensaje: 'hola'})
+}
