@@ -1,3 +1,5 @@
+
+import ProfileDetails from "@/app/components/ProfileDetails"
 type Params = {
     id: string
 }
@@ -5,6 +7,8 @@ type Params = {
 export default function Page(context: {params: Params}) {
     const id = context.params.id
     return (
-        <h1>Details {id}</h1>
+        <>
+            <ProfileDetails />
+        </>
     )
   }

@@ -1,3 +1,4 @@
+import ProfileCard from "@/app/components/ProfileCard"
 type Params = {
     id: string
 }
@@ -5,6 +6,8 @@ type Params = {
 export default function Page(context: {params: Params}) {
     const id = context.params.id
     return (
-        <h1>Info {id}</h1>
+        <>
+            <ProfileCard />
+        </>
     )
   }

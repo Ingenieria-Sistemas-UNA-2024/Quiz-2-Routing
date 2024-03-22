@@ -1,3 +1,4 @@
+import Form from "@/app/components/Form"
 type Params = {
     id: string
 }
@@ -5,6 +6,8 @@ type Params = {
 export default function Page(context: {params: Params}) {
     const id = context.params.id
     return (
-        <h1>Config {id}</h1>
+        <>
+            <Form />
+        </>
     )
   }
