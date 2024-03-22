@@ -1,7 +1,18 @@
 import fs from 'fs';
 
-let idNunber: number = 11
+const filePath: string = './src/app/api/model/accounts.json'
 
+let idNunber: number = 10
+
+function getIdNumber(): number {
+    const accounts = getAccounts();
+    if (accounts.length === 0) {
+        return 1;
+    } else {
+        const maxId = Math.max(...accounts.map(account => account.id));
+        return maxId + 1;
+    }
+}
 export class Account {
     id: number
     idUser: number
@@ -13,8 +24,6 @@ export class Account {
         this.privacy = privacy
     }
 }
-
-const filePath: string = './src/app/api/model/accounts.json'
 
 function getAccounts(): Account[] {
     try {
@@ -70,7 +79,7 @@ export function addAccount(account: Account): void {
         const accounts: Account[] = getAccounts()
         if (account !== null) {
             account.id = idNunber
-            idNunber ++
+            idNunber++
             accounts.push(account)
             setAccounts(accounts)
         }

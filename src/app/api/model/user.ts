@@ -1,7 +1,18 @@
 import fs from 'fs';
 
-let idNunber: number = 11
+const filePath: string = './src/app/api/model/users.json'
 
+let idNunber: number = getIdNumber()
+
+function getIdNumber(): number {
+    const users = getUsers();
+    if (users.length === 0) {
+        return 1;
+    } else {
+        const maxId = Math.max(...users.map(user => user.id));
+        return maxId + 1;
+    }
+}
 export class User {
     id: number
     name: string
@@ -15,8 +26,6 @@ export class User {
         this.admin = admin
     }
 }
-
-const filePath: string = './src/app/api/model/users.json'
 
 function getUsers(): User[] {
     try {
@@ -54,20 +63,27 @@ export function getUser(id: number): User | null {
     }
 }
 
-export function setUser(user: User): void {
+export function setUser(user: User): User | null {
     try {
-        const users: User[] = getUsers()
-        const index: number = users.findIndex(u => u.id === user.id)
-        if (index < 0) {
-            users[index] = user
-            setUsers(users)
+        if (user !== null) {
+            const users: User[] = getUsers()
+            const index: number = users.findIndex(u => u.id === user.id)
+            if (index !== -1) {
+                users[index] = user
+                setUsers(users)
+                return user
+            } else {
+                return addUser(user)
+            }
         }
+        return user
     } catch (error) {
         console.error('Error al escribir en el archivo JSON:', error)
+        return null
     }
 }
 
-export function addUser(user: User): void {
+export function addUser(user: User): User | null {
     try {
         const users: User[] = getUsers()
         if (user !== null) {
@@ -76,8 +92,10 @@ export function addUser(user: User): void {
             users.push(user)
             setUsers(users)
         }
+        return user
     } catch (error) {
         console.error('Error al escribir en el archivo JSON:', error)
+        return null
     }
 }
 
@@ -92,7 +110,7 @@ export function deleteUser(id: number): boolean {
         }
         return false
     } catch (error) {
-        return false
         console.error('Error al escribir en el archivo JSON:', error)
+        return false
     }
 }
