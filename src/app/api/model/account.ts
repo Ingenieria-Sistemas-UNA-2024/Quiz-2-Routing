@@ -2,7 +2,7 @@ import fs from 'fs';
 
 const filePath: string = './src/app/api/model/accounts.json'
 
-let idNunber: number = 10
+let idNunber: number = getIdNumber()
 
 function getIdNumber(): number {
     const accounts = getAccounts();
