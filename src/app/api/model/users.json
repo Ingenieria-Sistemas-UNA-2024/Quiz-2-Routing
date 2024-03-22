@@ -1,12 +1,1 @@
-[
-    { "id": 1, "name": "alice", "password": "password123", "admin": true },
-    { "id": 2, "name": "bob", "password": "bob123", "admin": false },
-    { "id": 3, "name": "charlie", "password": "charlie123", "admin": true },
-    { "id": 4, "name": "dave", "password": "dave123", "admin": false },
-    { "id": 5, "name": "emma", "password": "emma123", "admin": true },
-    { "id": 6, "name": "frank", "password": "frank123", "admin": false },
-    { "id": 7, "name": "grace", "password": "grace123", "admin": true },
-    { "id": 8, "name": "harry", "password": "harry123", "admin": false },
-    { "id": 9, "name": "isabel", "password": "isabel123", "admin": true },
-    { "id": 10, "name": "jack", "password": "jack123", "admin": false }
-]
+[{"id":1,"name":"robert","password":"robert123","admin":false},{"id":2,"name":"bob","password":"bob123","admin":false},{"id":3,"name":"charlie","password":"charlie123","admin":true},{"id":4,"name":"dave","password":"dave123","admin":false},{"id":5,"name":"emma","password":"emma123","admin":true},{"id":6,"name":"frank","password":"frank123","admin":false},{"id":7,"name":"grace","password":"grace123","admin":true},{"id":8,"name":"harry","password":"harry123","admin":false},{"id":9,"name":"isabel","password":"isabel123","admin":true},{"id":10,"name":"jack","password":"jack123","admin":false}]
