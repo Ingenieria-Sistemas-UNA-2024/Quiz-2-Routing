@@ -3,6 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const user = await request.json();
-  saveUser(user);
-  return NextResponse.json({ user });
+  const userSaved = saveUser(user);
+  return NextResponse.json({ userSaved });
 }

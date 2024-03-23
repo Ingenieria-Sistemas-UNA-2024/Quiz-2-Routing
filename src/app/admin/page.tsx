@@ -8,8 +8,8 @@ export default function Page(context: { params: Params }) {
   const id = context.params.id;
   return (
     <>
-        <SearchForm />
-        <TableUser />
+      <SearchForm />
+      <TableUser />
     </>
   );
 }

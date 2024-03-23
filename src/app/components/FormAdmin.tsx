@@ -1,9 +1,9 @@
 import React from "react";
-import Button from './Button';
-import Label from './Label';
-import Input from './Input';
-import Select from './Select';
-import Checkbox from './Checkbox';
+import Button from "./Button";
+import Label from "./Label";
+import Input from "./Input";
+import Select from "./Select";
+import Checkbox from "./Checkbox";
 
 const FormAdmin = () => {
   return (
@@ -32,7 +32,9 @@ const FormAdmin = () => {
             <Select id="gender" options={["Masculino", "Femenino"]} />
           </div>
           <div className="w-full md:w-1/2 px-3">
-            <Label htmlFor="privacy-settings">Configuración de privacidad</Label>
+            <Label htmlFor="privacy-settings">
+              Configuración de privacidad
+            </Label>
             <Select
               id="privacy-settings"
               options={["Pública", "Solo amigos", "Privado"]}
@@ -48,7 +50,7 @@ const FormAdmin = () => {
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <Label htmlFor="password">Contraseña</Label>
-            <Input id="password" type="password"  />
+            <Input id="password" type="password" />
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">

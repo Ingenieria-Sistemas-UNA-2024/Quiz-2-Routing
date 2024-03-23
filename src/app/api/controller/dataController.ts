@@ -8,7 +8,7 @@ const jsonData = JSON.parse(data);
 const array: User[] = jsonData as User[];
 
 export function deleteUser(id: number): boolean {
-  let index = array.findIndex((user => user.id === id));
+  let index = array.findIndex((user) => user.id === id);
   if (index !== -1) {
     array.splice(index, 1);
     saveData();
@@ -18,7 +18,7 @@ export function deleteUser(id: number): boolean {
 }
 
 export function getUser(id: number): User | undefined {
-  let index = array.findIndex((user => user.id === id));
+  let index = array.findIndex((user) => user.id === id);
   if (index !== -1) {
     return array[index];
   }
