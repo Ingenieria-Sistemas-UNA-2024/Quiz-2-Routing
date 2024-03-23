@@ -14,7 +14,10 @@ const ProfileDetails = () => {
           <ProfileField label="Privacidad" value="Público" />
           <ProfileField label="Rol" value="Admin" />
           <ProfileField label="Género" value="Masculino" />
-          <ProfileField label="Lugar de residencia" value="San José, Costa Rica" />
+          <ProfileField
+            label="Lugar de residencia"
+            value="San José, Costa Rica"
+          />
           <ProfileField label="Fecha de nacimiento" value="17/10/2003" />
         </div>
       </div>

@@ -1,15 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getUser, deleteUser } from "../../../model/user";
+import data from "@/data.json";
+import { NextResponse } from "next/server";
+import { deleteUser, getUser } from "@/app/api/controller/dataController";
 
-type Params = {
-  id: string
+export async function GET(request: Request, context: any) {
+  const { params } = context;
+  return NextResponse.json(getUser(parseInt(params.id)));
 }
 
-export async function GET(req: NextRequest, context: { params: Params }) {
-  return NextResponse.json(JSON.stringify(getUser(parseInt(context.params.id, 10))))
-}
-
-export async function DELETE(req: NextRequest, context: { params: Params }) {
-  
-  return NextResponse.json(JSON.stringify(deleteUser(parseInt(context.params.id, 10))))
+export async function DELETE(request: Request, context: any) {
+  const { params } = context;
+  return NextResponse.json(deleteUser(parseInt(params.id)));
 }

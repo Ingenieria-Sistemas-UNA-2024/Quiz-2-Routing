@@ -1,6 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { User, setUser, addUser } from "../../model/user";
+import { saveUser } from "@/app/api/controller/dataController";
+import { NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
-    return NextResponse.json(setUser(await req.json()))
+export async function POST(request: Request) {
+  const user = await request.json();
+  const userSaved = saveUser(user);
+  return NextResponse.json({ userSaved });
 }

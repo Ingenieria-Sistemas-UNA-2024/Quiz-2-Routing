@@ -1,14 +1,13 @@
-
-import ProfileDetails from "@/app/components/ProfileDetails"
+import ProfileDetails from "@/app/components/ProfileDetails";
 type Params = {
-    id: string
-}
+  id: string;
+};
 
-export default function Page(context: {params: Params}) {
-    const id = context.params.id
-    return (
-        <>
-            <ProfileDetails />
-        </>
-    )
-  }
+export default function Page(context: { params: Params }) {
+  const id = context.params.id;
+  return (
+    <>
+      <ProfileDetails />
+    </>
+  );
+}
