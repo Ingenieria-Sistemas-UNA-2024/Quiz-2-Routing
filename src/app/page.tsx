@@ -6,7 +6,7 @@ import Form from "./components/Form";
 import TableUser from "./components/TableUser";
 import ProfileCard from "./components/ProfileCard";
 import ProfileDetails from "./components/ProfileDetails";
-import ChangePassword from "./components/ChangePassword";
+import ChangePassword from "./components/ConfigProfile";
 
 export default function Home() {
   return <></>;

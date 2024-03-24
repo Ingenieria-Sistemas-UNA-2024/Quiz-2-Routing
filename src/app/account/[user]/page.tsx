@@ -1,8 +1,13 @@
+import ConfigProfile from "@/app/components/ConfigProfile";
 type Params = {
-  user: string;
+  id: string;
 };
 
 export default function Page(context: { params: Params }) {
-  const user = context.params.user;
-  return <h1>Account {user}</h1>;
+  const id = context.params.id;
+  return (
+    <>
+      <ConfigProfile />
+    </>
+  );
 }
