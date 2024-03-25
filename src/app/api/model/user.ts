@@ -4,10 +4,10 @@ export class User {
   password: string;
   lastname: string;
   privacy: string;
-  role: string;
+  role: boolean;
   gender: string;
   place_of_residence: string;
-  birthdate: Date;
+  birthdate: Date | string;
 
   constructor(
     id: number,
@@ -15,10 +15,10 @@ export class User {
     password: string,
     lastname: string,
     privacy: string,
-    role: string,
+    role: boolean,
     gender: string,
     place_of_residence: string,
-    birthdate: Date
+    birthdate: Date | string
   ) {
     this.id = id;
     this.name = name;

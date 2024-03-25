@@ -4,33 +4,25 @@ import Label from "./Label";
 import Input from "./Input";
 import Select from "./Select";
 import { User } from "@/model/user"
-import { postUser, getUser } from "@/lib/apiClientConsumer";
+import { getUser, postUser } from "@/lib/apiClientConsumer";
+import { createUser } from "@/lib/utils";
 
-
-function createUser(user: User | null, formRef: any): void {
-  try {
-    if (user !== null) {
-      const formData: FormData = new FormData(formRef);
-      const newUser = new User(
-        user.id,
-        formData.get("name") as string,
-        user.password,
-        formData.get("lastName") as string,
-        user.privacy,
-        user.role,
-        formData.get("gender") as string,
-        formData.get("residence") as string,
-        formData.get("birthday") as string
-      )
-      console.log(newUser)
-      postUser(newUser);
-    }
-
-  } catch (error) {
-    console.log("Error guardando usuario")
+function saveUser(user: User | null, formData: FormData | null): void {
+  if (user !== null && formData !== null) {
+    const newUser = new User(
+      user.id,
+      formData.get("name") as string,
+      user.password,
+      formData.get("lastName") as string,
+      user.privacy,
+      user.role,
+      formData.get("gender") as string,
+      formData.get("residence") as string,
+      formData.get("birthday") as string
+    )
+    postUser(newUser)
   }
 }
-
 
 function Form({ userID }: { userID: number }) {
   const [user, setUser] = useState<User | null>(null);
@@ -76,7 +68,7 @@ function Form({ userID }: { userID: number }) {
           <Input name="birthday" type="date" defaultValue={user ? user.birthdate : ""} />
         </div>
         <div className="my-6 w-full text-gray-600">
-          <Button id="submit-changes" color="blue" onClick={(e: any) => { createUser(user, formRef.current), e.preventDefault() }}>Guardar cambios</Button>
+          <Button id="submit-changes" color="blue" onClick={(e: any) => { saveUser(user, formRef.current ? new FormData(formRef.current) : null), e.preventDefault() }}>Guardar cambios</Button>
         </div>
       </form>
     </div>
