@@ -106,12 +106,14 @@ function FormAdmin({ userID }: { userID: number }) {
         <div className="my-6 w-full text-gray-600">
           <Button id={"Save"} color="blue" onClick={(e: Event) => { saveUser(user, formRef.current ? new FormData(formRef.current) : null), e.preventDefault() }}>Guardar cambios</Button>
         </div>
-        <div className="w-full px-3">
-          <Label htmlFor="account-deletion">Eliminar cuenta</Label>
-          <div className="my-6 w-full text-gray-600">
-            <Button id="account-deletion" color="red" onClick={(e: Event) => { deleteUser(userID)}}>
-              Eliminar
-            </Button>
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full px-3">
+            <Label htmlFor="account-deletion">Eliminar cuenta</Label>
+            <div className="my-6 w-full text-gray-600">
+              <Button id="account-deletion" color="blue" onClick={(e: Event) => { deleteUser(userID), e.preventDefault() }}>
+                Eliminar
+              </Button>
+            </div>
           </div>
         </div>
       </form>
