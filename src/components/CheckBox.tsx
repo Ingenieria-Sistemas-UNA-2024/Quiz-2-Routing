@@ -2,13 +2,14 @@ import React from "react";
 
 interface CheckboxProps {
   id: string;
+  name: string
   label: string;
-  checked: boolean
+  defaultChecked: boolean
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ id, label, checked}) => (
+const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, defaultChecked}) => (
   <div className="flex items-center">
-    <input id={id} type="checkbox" className="mr-2" checked={checked}/>
+    <input id={id} name={name} type="checkbox" className="mr-2" defaultChecked={defaultChecked}/>
     <label htmlFor={id} className="text-sm">
       {label}
     </label>

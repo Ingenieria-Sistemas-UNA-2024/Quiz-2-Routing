@@ -4,7 +4,7 @@ export class User {
   password: string;
   lastname: string;
   privacy: string;
-  role: boolean;
+  role: string;
   gender: string;
   place_of_residence: string;
   birthdate: Date | string;
@@ -15,7 +15,7 @@ export class User {
     password: string,
     lastname: string,
     privacy: string,
-    role: boolean,
+    role: string,
     gender: string,
     place_of_residence: string,
     birthdate: Date | string

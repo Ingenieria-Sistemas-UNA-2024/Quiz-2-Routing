@@ -7,7 +7,9 @@ export async function getUser(id: number) {
 
 
 export async function deleteUser(id: number) {
-    const res = await fetch(`http://localhost:3000/api/users/${id}`);
+    const res = await fetch(`http://localhost:3000/api/users/${id}`,{
+        method: 'DELETE'
+    })
     const data = await res.json();
 }
 

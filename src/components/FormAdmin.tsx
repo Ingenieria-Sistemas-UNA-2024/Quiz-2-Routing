@@ -6,22 +6,21 @@ import Select from "./Select";
 import Checkbox from "./CheckBox";
 import { User } from "@/model/user";
 import { getUser, deleteUser, postUser } from "@/lib/apiClientConsumer";
-import { createUser } from "@/lib/utils";
 
 function saveUser(user: User | null, formData: FormData | null): void {
   if (user !== null && formData !== null) {
-    const isAdmin = formData.get("isAdmin") === "true";
     const newUser = new User(
       user.id,
       formData.get("name") as string,
       formData.get("password") as string,
       formData.get("lastName") as string,
       formData.get("privacy-settings") as string,
-      isAdmin,
+      formData.get("rol") as string,
       formData.get("gender") as string,
       formData.get("residence") as string,
       formData.get("birthdate") as string
     )
+    console.log("=========================")
     console.log(newUser)
     postUser(newUser)
   }
@@ -42,6 +41,9 @@ function FormAdmin({ userID }: { userID: number }) {
     }
     fetchData();
   }, []);
+  console.log("=========================")
+  console.log(user)
+  console.log(user?.role)
 
   return (
     <div className="flex items-center justify-center pt-4">
@@ -94,7 +96,11 @@ function FormAdmin({ userID }: { userID: number }) {
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <Label htmlFor="isAdmin">Administrador</Label>
-            <Checkbox id="isAdmin" label="Es administrador" checked={user ? user.role : false} />
+            <Select
+              name="rol"
+              options={["Usuario", "Administrador"]}
+              defaultValue={user ? user.role : "Usuario"}
+            />
           </div>
         </div>
         <div className="my-6 w-full text-gray-600">
@@ -103,7 +109,7 @@ function FormAdmin({ userID }: { userID: number }) {
         <div className="w-full px-3">
           <Label htmlFor="account-deletion">Eliminar cuenta</Label>
           <div className="my-6 w-full text-gray-600">
-            <Button id="account-deletion" color="red" onClick={(e: Event) => { deleteUser(userID), e.preventDefault() }}>
+            <Button id="account-deletion" color="red" onClick={(e: Event) => { deleteUser(userID)}}>
               Eliminar
             </Button>
           </div>
