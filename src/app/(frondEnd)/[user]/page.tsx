@@ -1,4 +1,4 @@
-import ConfigProfile from "@/app/components/ConfigProfile";
+import ConfigProfile from "@/components/ConfigProfile";
 type Params = {
   id: string;
 };

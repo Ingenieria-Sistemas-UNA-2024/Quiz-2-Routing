@@ -3,24 +3,10 @@ import Button from "./Button";
 import Label from "./Label";
 import Input from "./Input";
 import Select from "./Select";
-import { User } from "@/app/model/user"
+import { User } from "@/model/user"
+import { postUser, getUser } from "@/lib/apiClientConsumer";
+import { json } from "stream/consumers";
 
-async function getUser(id: number) {
-  const res = await fetch(`http://localhost:3000/api/users/${id}`)
-  return await res.json()
-}
-async function createUser(user:User | null, event: Event){
-  event.preventDefault()
-  const res = await fetch('http://localhost:3000/api/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(user)
-  });
-  const data = await res.json();
-  return data;
-}
 function Form({ userID }: { userID: number }) {
   const [user, setUser] = useState<User | null>(null);
   const formRef = useRef(null)
@@ -36,6 +22,28 @@ function Form({ userID }: { userID: number }) {
     fetchData();
   }, []);
 
+  const createUser = () => {
+    try {
+      const formData: FormData = new FormData(formRef.current);
+
+      const newUser = new User(
+        user.id,
+        formData.get("name") as string,
+        user.password,
+        formData.get("lastName") as string,
+        user.privacy,
+        user.role,
+        formData.get("gender") as string,
+        formData.get("residence") as string,
+        new Date(formData.get("birthdate") as string)
+      )
+      console.log(newUser)
+      postUser(newUser);
+    } catch (error) {
+      console.log("Error guardando usuario")
+    }
+  }
+
   return (
     <div className="flex items-center justify-center pt-4">
       <form className="w-full max-w-lg p-8" ref={formRef}>
@@ -45,27 +53,27 @@ function Form({ userID }: { userID: number }) {
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <Label htmlFor="name">Nombre</Label>
-            <Input id="name" type="text" value={user ? user.name : ""} onChange={(e) => setUser(user ? { ...user, name: e.target.value } : null)} />
+            <Input name="name" type="text" defaultValue={user ? user.name : ""} />
           </div>
           <div className="w-full md:w-1/2 px-3">
             <Label htmlFor="lastName">Apellidos</Label>
-            <Input id="lastName" type="text" value={user ? user.lastname : ""} onChange={(e) => setUser(user ? { ...user, lastname: e.target.value } : null)} />
+            <Input name="lastName" type="text" defaultValue={user ? user.lastname : ""} />
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <Label htmlFor="residence">Lugar de residencia</Label>
-          <Input id="residence" type="text" value={user ? user.place_of_residence : ""} onChange={(e) => setUser(user ? { ...user, place_of_residence: e.target.value } : null)} />
+          <Input name="residence" type="text" defaultValue={user ? user.place_of_residence : ""} />
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <Label htmlFor="gender">Género</Label>
-          <Select id="gender" options={["Masculino", "Femenino"]} value={user ? user.gender : "Masculino"} onChange={(e) => setUser(user ? { ...user, gender: e.target.value } : null)} />
+          <Select name="gender" options={["Masculino", "Femenino"]} defaultValue={user ? user.gender : "Masculino"} />
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <Label htmlFor="birthday">Fecha de nacimiento</Label>
-          <Input id="birthday" type="date" value={user ? user.birthdate : ""} onChange={(e) => setUser(user ? { ...user, birthdate: e.target.value } : null)} />
+          <Input name="birthday" type="date" defaultValue={user ? user.birthdate : ""} />
         </div>
         <div className="my-6 w-full text-gray-600">
-          <Button id="submit-changes" color="blue" onClick={(e:any) => createUser(user,e)}>Guardar cambios</Button>
+          <Button id="submit-changes" color="blue" onClick={(e: any) => { createUser(), e.preventDefault() }}>Guardar cambios</Button>
         </div>
       </form>
     </div>

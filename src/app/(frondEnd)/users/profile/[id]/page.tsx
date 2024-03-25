@@ -1,4 +1,4 @@
-import ProfileCard from "@/app/components/ProfileCard";
+import ProfileCard from "@/components/ProfileCard";
 type Params = {
   id: string;
 };
