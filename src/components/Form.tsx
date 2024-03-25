@@ -5,7 +5,32 @@ import Input from "./Input";
 import Select from "./Select";
 import { User } from "@/model/user"
 import { postUser, getUser } from "@/lib/apiClientConsumer";
-import { json } from "stream/consumers";
+
+
+function createUser(user: User | null, formRef: any): void {
+  try {
+    if (user !== null) {
+      const formData: FormData = new FormData(formRef);
+      const newUser = new User(
+        user.id,
+        formData.get("name") as string,
+        user.password,
+        formData.get("lastName") as string,
+        user.privacy,
+        user.role,
+        formData.get("gender") as string,
+        formData.get("residence") as string,
+        formData.get("birthday") as string
+      )
+      console.log(newUser)
+      postUser(newUser);
+    }
+
+  } catch (error) {
+    console.log("Error guardando usuario")
+  }
+}
+
 
 function Form({ userID }: { userID: number }) {
   const [user, setUser] = useState<User | null>(null);
@@ -21,28 +46,6 @@ function Form({ userID }: { userID: number }) {
     }
     fetchData();
   }, []);
-
-  const createUser = () => {
-    try {
-      const formData: FormData = new FormData(formRef.current);
-
-      const newUser = new User(
-        user.id,
-        formData.get("name") as string,
-        user.password,
-        formData.get("lastName") as string,
-        user.privacy,
-        user.role,
-        formData.get("gender") as string,
-        formData.get("residence") as string,
-        new Date(formData.get("birthdate") as string)
-      )
-      console.log(newUser)
-      postUser(newUser);
-    } catch (error) {
-      console.log("Error guardando usuario")
-    }
-  }
 
   return (
     <div className="flex items-center justify-center pt-4">
@@ -73,7 +76,7 @@ function Form({ userID }: { userID: number }) {
           <Input name="birthday" type="date" defaultValue={user ? user.birthdate : ""} />
         </div>
         <div className="my-6 w-full text-gray-600">
-          <Button id="submit-changes" color="blue" onClick={(e: any) => { createUser(), e.preventDefault() }}>Guardar cambios</Button>
+          <Button id="submit-changes" color="blue" onClick={(e: any) => { createUser(user, formRef.current), e.preventDefault() }}>Guardar cambios</Button>
         </div>
       </form>
     </div>
