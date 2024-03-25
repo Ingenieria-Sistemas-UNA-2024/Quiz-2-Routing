@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { User } from "@/model/user"
+import { getUsers } from "@/lib/apiClientConsumer";
 
 const Users = () => {
+  const [users, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const userData: User = await getUsers();
+        setUser(userData);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -32,6 +46,12 @@ const Users = () => {
                     scope="col"
                     className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0"
                   >
+                    ID
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0"
+                  >
                     Nombre
                   </th>
                   <th
@@ -51,8 +71,17 @@ const Users = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-red-500">
-                {/* Aquí puedes mapear tus usuarios y crear una fila para cada uno */}
+              <tbody>
+                {users && users.map((user) => (
+                  <tr key={user.id}>
+                    <td className="py-3.5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-0">{user.id}</td>
+                    <td className="px-3 py-3.5 text-left text-sm font-medium text-gray-900">{user.name}</td>
+                    <td className="py-3.5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-0">{user.lastname}</td>
+                    <td className="px-3 py-3.5 text-left text-sm font-medium text-gray-900">{user.privacy}</td>
+                    <td className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
