@@ -1,13 +1,14 @@
+"use client"
 import Form from "@/app/components/Form";
 type Params = {
   id: string;
 };
 
 export default function Page(context: { params: Params }) {
-  const id = context.params.id;
+  const userId  = parseInt(context.params.id);
   return (
     <>
-      <Form />
+      <Form userID={userId} />
     </>
   );
 }

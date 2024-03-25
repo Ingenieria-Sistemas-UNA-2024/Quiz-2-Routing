@@ -1,4 +1,4 @@
-import data from "@/data.json";
+
 import { NextResponse } from "next/server";
 import { deleteUser, getUser } from "@/app/api/controller/dataController";
 
