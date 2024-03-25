@@ -20,8 +20,9 @@ function saveUser(user: User | null, formData: FormData | null): void {
       isAdmin,
       formData.get("gender") as string,
       formData.get("residence") as string,
-      formData.get("birthday") as string
+      formData.get("birthdate") as string
     )
+    console.log(newUser)
     postUser(newUser)
   }
 }
