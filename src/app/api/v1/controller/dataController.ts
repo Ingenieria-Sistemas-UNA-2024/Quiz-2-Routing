@@ -1,5 +1,5 @@
 import fs from "fs";
-import { User } from "@/app/api/model/user";
+import { User } from "@/app/api/v1/model/user";
 
 const filePath: string = "./src/data.json";
 const data = fs.readFileSync(filePath, "utf-8");

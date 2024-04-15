@@ -1,4 +1,4 @@
-import { saveUser, getUsers } from "@/app/api/controller/dataController";
+import { saveUser, getUsers } from "@/app/api/v1/controller/dataController";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

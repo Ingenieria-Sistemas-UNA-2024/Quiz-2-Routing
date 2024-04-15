@@ -1,6 +1,6 @@
 
 import { NextResponse } from "next/server";
-import { deleteUser, getUser } from "@/app/api/controller/dataController";
+import { deleteUser, getUser } from "@/app/api/v1/controller/dataController";
 
 export async function GET(request: Request, context: any) {
   const { params } = context;

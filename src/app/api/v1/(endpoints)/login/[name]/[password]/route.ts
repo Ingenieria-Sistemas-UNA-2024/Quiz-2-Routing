@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getUserByNamePassword } from "@/app/api/controller/dataController";
+import { getUserByNamePassword } from "@/app/api/v1/controller/dataController";
 
 export async function GET(request: Request, context: any) {
   const { params } = context;
