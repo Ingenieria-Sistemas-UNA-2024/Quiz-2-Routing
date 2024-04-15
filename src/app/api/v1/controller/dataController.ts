@@ -27,6 +27,7 @@ export function deleteUser(id: number): boolean {
 
 export function getUser(id: number): User | undefined {
   let index = array.findIndex((user) => user.id === id);
+  console.log(index)
   if (index !== -1) {
     return array[index];
   }
