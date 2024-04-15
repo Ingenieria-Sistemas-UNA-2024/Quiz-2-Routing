@@ -1,7 +1,7 @@
 import fs from "fs";
 import { User } from "@/app/api/v1/model/user";
 
-const filePath: string = "./src/data.json";
+const filePath: string = "./src/app/api/v1/controller/data.json";
 const data = fs.readFileSync(filePath, "utf-8");
 const jsonData = JSON.parse(data);
 
