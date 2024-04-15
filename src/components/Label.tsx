@@ -1,4 +1,4 @@
-const Label = ({ htmlFor, children }) => (
+const Label: React.FC<{ htmlFor:string, children:string }> = ({ htmlFor, children }) => (
   <label
     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
     htmlFor={htmlFor}

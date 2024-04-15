@@ -3,11 +3,11 @@ import { User } from "@/model/user"
 import { getUsers } from "@/lib/apiClientConsumer";
 
 const Users = () => {
-  const [users, setUser] = useState<User | null>(null);
+  const [users, setUser] = useState<User[] | null>(null);
   useEffect(() => {
     async function fetchData() {
       try {
-        const userData: User = await getUsers();
+        const userData: User[] = await getUsers();
         setUser(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);

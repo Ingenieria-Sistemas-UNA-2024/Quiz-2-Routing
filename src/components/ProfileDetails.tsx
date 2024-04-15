@@ -29,7 +29,7 @@ function ProfileDetails ({ userID }: { userID: number }) {
           <ProfileField label="Rol" value={user?.role} />
           <ProfileField label="Género" value={user?.gender} />
           <ProfileField label="Lugar de residencia" value={user?.place_of_residence}/>
-          <ProfileField label="Fecha de nacimiento" value={user?.birthdate} />
+          <ProfileField label="Fecha de nacimiento" value={user?.birthdate.toString()} />
         </div>
       </div>
     </div>

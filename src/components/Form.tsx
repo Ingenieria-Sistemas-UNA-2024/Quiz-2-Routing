@@ -5,7 +5,6 @@ import Input from "./Input";
 import Select from "./Select";
 import { User } from "@/model/user"
 import { getUser, postUser } from "@/lib/apiClientConsumer";
-import { createUser } from "@/lib/utils";
 
 function saveUser(user: User | null, formData: FormData | null): void {
   if (user !== null && formData !== null) {
@@ -48,27 +47,27 @@ function Form({ userID }: { userID: number }) {
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <Label htmlFor="name">Nombre</Label>
-            <Input name="name" type="text" defaultValue={user ? user.name : ""} />
+            <Input id="name" type="text" defaultValue={user ? user.name : ""} />
           </div>
           <div className="w-full md:w-1/2 px-3">
             <Label htmlFor="lastName">Apellidos</Label>
-            <Input name="lastName" type="text" defaultValue={user ? user.lastname : ""} />
+            <Input id="lastName" type="text" defaultValue={user ? user.lastname : ""} />
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <Label htmlFor="residence">Lugar de residencia</Label>
-          <Input name="residence" type="text" defaultValue={user ? user.place_of_residence : ""} />
+          <Input id="residence" type="text" defaultValue={user ? user.place_of_residence : ""} />
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <Label htmlFor="gender">Género</Label>
-          <Select name="gender" options={["Masculino", "Femenino"]} defaultValue={user ? user.gender : "Masculino"} />
+          <Select id="gender" options={["Masculino", "Femenino"]} defaultValue={user ? user.gender : "Masculino"} />
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
           <Label htmlFor="birthday">Fecha de nacimiento</Label>
-          <Input name="birthday" type="date" defaultValue={user ? user.birthdate : ""} />
+          <Input id="birthday" type="date" defaultValue={user ? user.birthdate.toString() : ""} />
         </div>
         <div className="my-6 w-full text-gray-600">
-          <Button id="submit-changes" color="blue" onClick={(e: any) => { saveUser(user, formRef.current ? new FormData(formRef.current) : null), e.preventDefault() }}>Guardar cambios</Button>
+          <Button id="submit-changes" color="blue" onClick={() => { saveUser(user, formRef.current ? new FormData(formRef.current) : null)}}>Guardar cambios</Button>
         </div>
       </form>
     </div>
